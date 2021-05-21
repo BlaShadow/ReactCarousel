@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Block } from "../Services/Block";
-import { BlockImage } from "./BlockImage";
+import BlockImage from "./BlockImage";
 
 interface ImageCarouselProps {
   blocks: Block[];

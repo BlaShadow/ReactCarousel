@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Block } from "../Services/Block";
 
 interface CatImageProps {
@@ -20,7 +20,7 @@ const blockContainerStyle: React.CSSProperties = {
 const blockImageStyle: React.CSSProperties = {
   objectFit: "fill"
 };
-  
+
 export const BlockImage = ({ block, index }: CatImageProps) => {
   const randomIndexImage = Math.round(Math.random() * block.images.length);
   const url = block.images[randomIndexImage];
@@ -32,3 +32,4 @@ export const BlockImage = ({ block, index }: CatImageProps) => {
   );
 };
   
+export default memo(BlockImage);
