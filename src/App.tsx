@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Block } from "./Services/Block";
+import { ImageCarousel } from "./Components/ImageCarousel";
+import DataAccess from "./Services/DataAccess";
 
-function App() {
+export default function App() {
+  const [blocks, setBlocks] = useState<Block[]>([]);
+
+  useEffect(() => {
+    DataAccess.fetchImages()
+      .then((blocks: Block[]) => {
+        setBlocks(blocks);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ImageCarousel blocks={blocks} />
     </div>
   );
 }
-
-export default App;
